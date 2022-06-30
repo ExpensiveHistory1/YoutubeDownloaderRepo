@@ -1,0 +1,36 @@
+﻿<Window x:Class="YoutubeDownloader.MainWindow"
+        x:Name="Main_Window"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YoutubeDownloader"
+        mc:Ignorable="d"
+        Title="Youtube Downloader" Height="250" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4.75*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Label Margin="15,0,0,0">Please enter your Youtube link:</Label>
+            <TextBox Margin="20,2,10,0" Height="20" Text="{Binding YoutubeURL}"></TextBox>
+            <Button Margin="20,20,10,0" Height="25" Cursor="Hand" Command="{Binding StartDownloadCommand}"
+                    CommandParameter="{Binding ElementName=Format_Select}">Download</Button>
+            <Label Margin="15,15,0,0">Status:</Label>
+            <ProgressBar Value="{Binding ProgressBar}" Margin="20,0,10,0" Height="20"></ProgressBar>
+            <Label Margin="265,0,0,0" FontSize="10" Content="{Binding StatusInfo}"></Label>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <Label>Select the file format:</Label>
+            <ComboBox x:Name="Format_Select" ItemsSource="{Binding TypeFormatList}" Cursor="Hand"
+                      SelectedItem="{Binding TypeFormatList[0]}" Margin="10,0,10,0">
+            </ComboBox>
+            <Button Margin="10,10,10,0" Command="{Binding OpenMP3FolderCommand}" Cursor="Hand">Open MP3 Folder</Button>
+            <Button Margin="10,10,10,0" Command="{Binding OpenMP4FolderCommand}" Cursor="Hand">Open MP4 Folder</Button>
+        </StackPanel>
+    </Grid>
+</Window>
